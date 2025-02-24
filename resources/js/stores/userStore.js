@@ -9,9 +9,9 @@ export const userStore = defineStore('auth', () => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/login', { email, password });
+      const response = await axios.post('/api/users/login', { email, password });
       user.value = response.data.user;
-      error.value = null;
+      return response.data;
     } catch (err) {
       error.value = err.response?.data?.message || 'Login failed';
     }
@@ -34,7 +34,6 @@ export const userStore = defineStore('auth', () => {
   const resetPassword = async (mail) => {
     try {
       const response = await axios.post(`/api/users/resetpassword/${mail}`);
-      user.value = response.data;
       return response.data;
     } catch (err) {
       user.value = null;
@@ -45,7 +44,7 @@ export const userStore = defineStore('auth', () => {
   const confirmationCode = async (code) => {
     try {
       const response = await axios.post(`/api/users/resetpasswordcontrol/${code}`);
-      user.value = response.data;
+      passwordCode.value = response.data;
       return response.data;
     } catch (err) {
       user.value = null;

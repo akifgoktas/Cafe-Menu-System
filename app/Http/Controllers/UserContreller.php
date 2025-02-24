@@ -31,7 +31,16 @@ class UserContreller extends Controller
 
     public function login()
     {
-        return "login";
+        Session::put([
+            'user_status'   => false,
+            'user_id'       => 1
+        ]);
+        $response = response()->json([
+            'status'        => true,
+            'user_status'   => true,
+            'message'       => 'Kullanıcı oturumu kapalı'
+        ], 201);
+        return $response;
     }
 
     public function resetpassword(Request $request, $mail)

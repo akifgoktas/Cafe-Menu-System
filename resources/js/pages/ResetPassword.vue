@@ -1,13 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { formStore } from '../stores/formStore.js';
 import Swal from "sweetalert2";
 import { userStore } from '../stores/userStore.js';
 
-const form = formStore();
-const csrf = ref('');
 const auth = userStore();
-const passwordCode = ref('');
 
 onMounted(async () => {
   await form.csrfToken();

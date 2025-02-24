@@ -1,17 +1,48 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { formStore } from '../stores/formStore.js';
 import Swal from "sweetalert2";
+import { userStore } from '../stores/userStore.js';
 
-const form = formStore();
-const csrf = ref('');
-const user = ref('');
+const auth = userStore();
 
 onMounted(async () => {
-  await form.csrfToken();
-  csrf.value = form.csrf;
-  console.log(form.csrf);
+
 });
+
+const mail_input = ref('');
+const password_input = ref();
+
+const loginForm = async () => {
+  const mail = mail_input.value;
+  const password = password_input.value;
+
+  if(mail == "" || password == ""){
+    Swal.fire({
+      icon: "error",
+      title: "Boş alan bırakmayınız",
+      text: "Tüm alanları girdiğinizden emin olun.",
+      confirmButtonText: "Tamam",
+    });
+  } else {
+      const response = await auth.login(mail, password);
+      console.log(response)
+      if (response.status === false) {
+        Swal.fire({
+          icon: "error",
+          title: "Hatalı Giriş",
+          text: "Mail veya şifreniz yanlış.",
+          confirmButtonText: "Tamam",
+          footer: '<a href="/admin/register">Üye değilseniz kayıt olabilirsiniz.</a>',
+        });
+      } else {
+        Swal.fire({
+          title: "Giriş Başarılı Yönlendiriliyorsunuz.",
+          icon: "success",
+          draggable: true
+        });
+      }
+  }
+};
 
 </script>
 
@@ -21,14 +52,11 @@ onMounted(async () => {
       <div class="col-md-12">
         <div class="login-box">
           <h4 class="mb-5">Menü Yönetim Sistemine Giriş Yapabilirsiniz</h4>
-            <form action="/api/user/login" method="post">
-            <input type="hidden" name="_token" :value="csrf">
             <label for="">E-Posta adresinizi giriniz.</label>
-            <input type="email" placeholder="E-Posta" required>
+            <input type="email" v-model="mail_input" placeholder="E-Posta" required>
             <label for="">Şifrenizi giriniz.</label>
-            <input type="password" placeholder="Şifre" required>
-            <button class="btn btn-new">Giriş Yap</button>
-          </form>
+            <input type="password" v-model="password_input" placeholder="Şifre" required>
+            <button @click="loginForm" class="btn btn-new">Giriş Yap</button>
           <router-link to="/admin/resetpassword" class="pass-link">Şifremi Unuttum</router-link>
         </div>
       </div>
