@@ -34,7 +34,6 @@ class UserContreller extends Controller
         return "login";
     }
 
-
     public function resetpassword(Request $request, $mail)
     {
         Session::put([
