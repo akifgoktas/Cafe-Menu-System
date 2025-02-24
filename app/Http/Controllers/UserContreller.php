@@ -74,20 +74,6 @@ class UserContreller extends Controller
         return $response;
     }
 
-    public function resetpassword($mail)
-    {
-        Session::put([
-            'confirmation_code'   => 452323,
-        ]);
-        $response = response()->json([
-            'status'        => true,
-            'user_status'   => false,
-            'message'       => 'şifre sıfırlama için mailinize onay kodu gönderilmiştir mail: ' . $mail,
-        ], 201);
-
-        return $response;
-    }
-
     public function register(UsersRegisterRequest $request)
     {
         $user_email        = $this->mailControl($request->email);
@@ -127,6 +113,19 @@ class UserContreller extends Controller
         }
     }
 
+    public function resetpassword($mail)
+    {
+        Session::put([
+            'confirmation_code'   => 452323,
+        ]);
+        $response = response()->json([
+            'status'        => true,
+            'user_status'   => false,
+            'message'       => 'şifre sıfırlama için mailinize onay kodu gönderilmiştir mail: ' . $mail,
+        ], 201);
+
+        return $response;
+    }
 
     public function resetpasswordcontrol($code)
     {
