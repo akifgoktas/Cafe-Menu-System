@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Swal from "sweetalert2";
-import { userStore } from '../stores/userStore.js';
+import { useUserStore } from '../stores/userStore.js';
 
-const auth = userStore();
+
+const auth = useUserStore();
 
 onMounted(async () => {
 
@@ -13,10 +14,10 @@ const mail_input = ref('');
 const password_input = ref();
 
 const loginForm = async () => {
-  const mail = mail_input.value;
+  const email = mail_input.value;
   const password = password_input.value;
 
-  if(mail == "" || password == ""){
+  if (email == "" || password == "") {
     Swal.fire({
       icon: "error",
       title: "Boş alan bırakmayınız",
@@ -24,23 +25,22 @@ const loginForm = async () => {
       confirmButtonText: "Tamam",
     });
   } else {
-      const response = await auth.login(mail, password);
-      console.log(response)
-      if (response.status === false) {
-        Swal.fire({
-          icon: "error",
-          title: "Hatalı Giriş",
-          text: "Mail veya şifreniz yanlış.",
-          confirmButtonText: "Tamam",
-          footer: '<a href="/admin/register">Üye değilseniz kayıt olabilirsiniz.</a>',
-        });
-      } else {
-        Swal.fire({
-          title: "Giriş Başarılı Yönlendiriliyorsunuz.",
-          icon: "success",
-          draggable: true
-        });
-      }
+    const response = await auth.login(email, password);
+    if (response.status === false) {
+      Swal.fire({
+        icon: "error",
+        title: "Hatalı Giriş",
+        text: "Mail veya şifreniz yanlış.",
+        confirmButtonText: "Tamam",
+        footer: '<a href="/admin/register">Üye değilseniz kayıt olabilirsiniz.</a>',
+      });
+    } else {
+      Swal.fire({
+        title: "Giriş Başarılı Yönlendiriliyorsunuz.",
+        icon: "success",
+        draggable: true
+      });
+    }
   }
 };
 

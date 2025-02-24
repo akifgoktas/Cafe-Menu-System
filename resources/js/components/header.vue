@@ -1,13 +1,13 @@
 <script setup>
 import logo from "@/img/logo2.png";
-import { userStore } from '../stores/userStore.js';
+import { useUserStore } from '../stores/userStore.js';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
-const authStore = userStore();
+const authStore = useUserStore();
 const router = useRouter();
 
-const user = computed(() => authStore.user || { status: false });
+const user_status = computed(() => authStore.user_status);
 
 const handleLogout = async () => {
   await authStore.logout();
@@ -22,11 +22,11 @@ const handleLogout = async () => {
         <img :src="logo" class="logo">
       </a>
       <ul class="nav header-menu">
-        <li class="nav-item" v-if="user.user_status">
-          <router-link to="/api/user/logout" class="btn btn-logout">Çıkış</router-link>
+        <li class="nav-item" v-if="user_status">
+          <a href="/api/users/logout" class="btn btn-logout">Çıkış</a>
         </li>
-        <li class="nav-item" v-if="$route.name !== 'Register' && !user.user_status">
-          <router-link to="/admin/register" class="btn btn-logout">Kayıt Ol</router-link>
+        <li class="nav-item" v-if="$route.name !== 'Register' && !user_status">
+          <a href="/admin/users/register" class="btn btn-logout">Kayıt Ol</a>
         </li>
       </ul>
     </div>

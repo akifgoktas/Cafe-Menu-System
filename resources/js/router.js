@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { userStore } from './stores/userStore.js';
+import { useUserStore } from './stores/userStore.js';
 import Home from './pages/Home.vue';
 import Categories from './pages/Categories.vue';
 import Products from './pages/Products.vue';
@@ -22,24 +22,26 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    const authStore = userStore();
+  const authStore = useUserStore();
 
-    if (!authStore.user) {
-      await authStore.checkSession();
-    }
-    if (to.name === 'Login' || to.name === 'Register' || to.name === 'Resetpassword') {
-      if (authStore.user?.user_status === true) {
-        next({ name: 'Home' });
-      } else {
-        next();
-      }
+  if (authStore.user_status === null) {
+    await authStore.checkSession();
+  }
+  if (!authStore.user_status) {
+    if (['Login', 'Register', 'ResetPassword'].includes(to.name)) {
+      return next();
     } else {
-      if (authStore.user?.user_status === true) {
-        next();
-      } else {
-        next({ name: 'Login' });
-      }
+      return next({ name: 'Login' });
     }
-  });
+  }
+  if (authStore.user_status) {
+    if (['Login', 'Register', 'ResetPassword'].includes(to.name)) {
+      return next({ name: 'Dashboard' });
+    }
+    return next();
+  }
+
+  next();
+});
 
 export default router;

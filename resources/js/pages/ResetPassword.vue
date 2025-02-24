@@ -1,14 +1,12 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Swal from "sweetalert2";
-import { userStore } from '../stores/userStore.js';
+import { useUserStore } from '../stores/userStore.js';
 
-const auth = userStore();
+const auth = useUserStore();
 
 onMounted(async () => {
-  await form.csrfToken();
-  csrf.value = form.csrf;
-  console.log(form.csrf);
+
 });
 
 const mail_input = ref('');
@@ -18,7 +16,6 @@ const passwordReset = async () => {
     if (mail != "") {
         try {
             const response = await auth.resetPassword(mail);
-            console.log(response.status);
             if(response.status === true) {
                 Swal.fire({
                     title: "Mailinize gelen kodu griniz.",
@@ -33,7 +30,6 @@ const passwordReset = async () => {
                     preConfirm: async (code) => {
                         try {
                             const response = await auth.confirmationCode(code);
-                            console.log(response.message)
                             if (response.status === false) {
                                 return Swal.showValidationMessage(await response.message);
                             }

@@ -2,15 +2,15 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
 
-export const userStore = defineStore('auth', () => {
-  const user = ref(null);
+export const useUserStore = defineStore('auth', () => {
+  const user_status = ref(null);
   const error = ref(null);
   const passwordCode = ref(null);
 
   const login = async (email, password) => {
     try {
       const response = await axios.post('/api/users/login', { email, password });
-      user.value = response.data.user;
+      user_status.value = response.data.user_status;
       return response.data;
     } catch (err) {
       error.value = err.response?.data?.message || 'Giriş başarısız';
@@ -27,16 +27,18 @@ export const userStore = defineStore('auth', () => {
   };
 
   const logout = async () => {
-    await axios.post('/api/logout');
-    user.value = null;
+    await axios.post('/api/users/logout');
+    user_status.value = null;
   };
 
   const checkSession = async () => {
     try {
-      const response = await axios.get('/api/usercontrol');
-      user.value = response.data;
+      const response = await axios.get('/api/users/usercontrol');
+      user_status.value = response.data.user_status;
+      console.log(user_status.value)
+      return user_status.value;
     } catch (err) {
-      user.value = null;
+      user_status.value = null;
     }
   };
 
@@ -45,7 +47,6 @@ export const userStore = defineStore('auth', () => {
       const response = await axios.post(`/api/users/resetpassword/${mail}`);
       return response.data;
     } catch (err) {
-      user.value = null;
       throw err;
     }
   };
@@ -56,10 +57,9 @@ export const userStore = defineStore('auth', () => {
       passwordCode.value = response.data;
       return response.data;
     } catch (err) {
-      user.value = null;
       throw err;
     }
   };
 
-  return { user, error, passwordCode, login, register, logout, checkSession, resetPassword, confirmationCode};
+  return { user_status, error, passwordCode, login, register, logout, checkSession, resetPassword, confirmationCode};
 });

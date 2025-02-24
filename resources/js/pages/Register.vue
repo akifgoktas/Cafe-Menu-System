@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Swal from "sweetalert2";
-import { userStore } from '../stores/userStore.js';
+import { useUserStore } from '../stores/userStore.js';
 
-const auth = userStore();
+const auth = useUserStore();
 
 onMounted(async () => {
 
@@ -33,7 +33,6 @@ const registerForm = async () => {
     });
   } else {
       const response = await auth.register(email, password, phone_number, cafe_name, full_name, address);
-      console.log(response)
       if (response.status === false) {
         Swal.fire({
           icon: "error",

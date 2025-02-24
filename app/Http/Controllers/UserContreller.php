@@ -24,12 +24,8 @@ class UserContreller extends Controller
         return $exists;
     }
 
-    public function index()
+    public function usercontrol()
     {
-        Session::put([
-            'user_status'   => false,
-            'user_id'       => 1
-        ]);
         if (Session::get('user_status') === true) {
             $response = response()->json([
                 'status'        => true,
@@ -57,6 +53,7 @@ class UserContreller extends Controller
                 ]);
                 $response = response()->json([
                     'status'    => true,
+                    'user_status'   => true,
                     'message'   => 'Giriş yapıldı: ',
                 ], 201);
             } else {
