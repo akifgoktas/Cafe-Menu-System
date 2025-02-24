@@ -17,6 +17,8 @@ Route::get('/', function () {
 Route::get('/api/usercontrol', [UserContreller::class, 'index']);
 
 Route::post('/api/users/login', [UserContreller::class, 'login'])->middleware('UsersMiddleware');
+Route::post('/api/users/register', [UserContreller::class, 'register'])->middleware('UsersMiddleware');
+
 Route::post('/api/users/resetpassword/{mail}', [UserContreller::class, 'resetpassword'])->middleware('UsersMiddleware');
 Route::post('/api/users/resetpasswordcontrol/{code}', [UserContreller::class, 'resetpasswordcontrol'])->middleware('UsersMiddleware');
 

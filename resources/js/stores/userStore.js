@@ -13,7 +13,16 @@ export const userStore = defineStore('auth', () => {
       user.value = response.data.user;
       return response.data;
     } catch (err) {
-      error.value = err.response?.data?.message || 'Login failed';
+      error.value = err.response?.data?.message || 'Giriş başarısız';
+    }
+  };
+
+  const register = async (email, password, phone_number, cafe_name, full_name, address) => {
+    try {
+      const response = await axios.post('/api/users/register', { email, password, phone_number, cafe_name, full_name, address});
+      return response.data;
+    } catch (err) {
+      error.value = err.response?.data?.message || 'Kayıt Başarısız';
     }
   };
 
@@ -52,5 +61,5 @@ export const userStore = defineStore('auth', () => {
     }
   };
 
-  return { user, error, passwordCode, login, logout, checkSession, resetPassword, confirmationCode};
+  return { user, error, passwordCode, login, register, logout, checkSession, resetPassword, confirmationCode};
 });

@@ -53,9 +53,9 @@ const loginForm = async () => {
         <div class="login-box">
           <h4 class="mb-5">Menü Yönetim Sistemine Giriş Yapabilirsiniz</h4>
             <label for="">E-Posta adresinizi giriniz.</label>
-            <input type="email" v-model="mail_input" placeholder="E-Posta" required>
+            <input type="email" v-model="mail_input" placeholder="E-Posta">
             <label for="">Şifrenizi giriniz.</label>
-            <input type="password" v-model="password_input" placeholder="Şifre" required>
+            <input type="password" v-model="password_input" placeholder="Şifre">
             <button @click="loginForm" class="btn btn-new">Giriş Yap</button>
           <router-link to="/admin/resetpassword" class="pass-link">Şifremi Unuttum</router-link>
         </div>
