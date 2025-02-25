@@ -13,7 +13,7 @@ const routes = [
     { path: '/admin/urunler', name: 'Products', component: Products },
     { path: '/admin/login', name: 'Login', component: Login },
     { path: '/admin/register', name: 'Register', component: Register },
-    { path: '/admin/resetpassword', name: 'Resetpassword', component: Resetpassword },
+    { path: '/admin/resetpassword', name: 'ResetPassword', component: Resetpassword },
 ];
 
 const router = createRouter({
@@ -23,20 +23,20 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useUserStore();
-
   if (authStore.user_status === null) {
     await authStore.checkSession();
   }
+
   if (!authStore.user_status) {
     if (['Login', 'Register', 'ResetPassword'].includes(to.name)) {
       return next();
-    } else {
-      return next({ name: 'Login' });
     }
+    return next({ name: 'Login' });
   }
+
   if (authStore.user_status) {
     if (['Login', 'Register', 'ResetPassword'].includes(to.name)) {
-      return next({ name: 'Dashboard' });
+      return next({ name: 'Home' });
     }
     return next();
   }

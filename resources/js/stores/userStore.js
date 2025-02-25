@@ -35,7 +35,6 @@ export const useUserStore = defineStore('auth', () => {
     try {
       const response = await axios.get('/api/users/usercontrol');
       user_status.value = response.data.user_status;
-      console.log(user_status.value)
       return user_status.value;
     } catch (err) {
       user_status.value = null;

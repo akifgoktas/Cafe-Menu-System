@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserContreller;
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [Admin::class, 'show']);
+    Route::get('/', [Admin::class, 'show'])->name('admin');
     Route::get('/{any}', [Admin::class, 'show'])->where('any', '.*');
 });
 
@@ -18,7 +18,7 @@ Route::get('/api/users/usercontrol', [UserContreller::class, 'usercontrol']);
 
 Route::post('/api/users/login', [UserContreller::class, 'login'])->middleware('UsersMiddleware');
 Route::post('/api/users/register', [UserContreller::class, 'register'])->middleware('UsersMiddleware');
-//Route::get('/api/users/logout', [UserContreller::class, 'logout']);
+Route::get('/api/users/logout', [UserContreller::class, 'logout']);
 Route::post('/api/users/resetpassword/{mail}', [UserContreller::class, 'resetpassword'])->middleware('UsersMiddleware');
 Route::post('/api/users/resetpasswordcontrol/{code}', [UserContreller::class, 'resetpasswordcontrol'])->middleware('UsersMiddleware');
 

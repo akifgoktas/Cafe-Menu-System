@@ -1,18 +1,11 @@
 <script setup>
-import { onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { useUserStore } from './stores/userStore.js';
 import Header from './components/header.vue';
 import Submenu from "./components/submenu.vue";
 
 const authStore = useUserStore();
 
-onMounted(async () => {
-  await authStore.checkSession(); 
-});
-
-watch(() => authStore.user_status, (newVal) => {
-  console.log("user_status:", newVal);
-});
 </script>
 
 <template>

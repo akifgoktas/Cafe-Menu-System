@@ -128,10 +128,35 @@ class UserContreller extends Controller
     {
         $confirmation_code = Session::get('confirmation_code');
         $response = response()->json([
-            'status'    => false,
+            'status'    => true,
             'message'   => 'şifreniz otomatik olarak değiştirilmiş ve mailnize gönderilmiştir: ' . $code
         ], 201);
 
         return $response;
+    }
+
+    public function logout()
+    {
+        try {
+            Session::forget('user_status');
+
+            if (!Session::has('user_status')) {
+                $response = response()->json([
+                    'status'    => 'success',
+                    'message'   => 'Oturum kapatıldı'
+                ], 201);
+            } else {
+                $response = response()->json([
+                    'status'    => 'error',
+                    'message'   => 'Oturum kapatılmadı'
+                ], 500);
+            }
+        } catch (\Throwable $th) {
+            $response = response()->json([
+                'status'    => 'error',
+                'message'   => 'Hata meydana geldi: ' . $th->getMessage()
+            ], 500);
+        }
+        return redirect(route('admin'));
     }
 }

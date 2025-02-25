@@ -1,62 +1,61 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import Swal from "sweetalert2";
 import { useUserStore } from '../stores/userStore.js';
 
 const auth = useUserStore();
-
-onMounted(async () => {
-
-});
-
 const mail_input = ref('');
 
 const passwordReset = async () => {
-    const mail = mail_input.value;
-    if (mail != "") {
-        try {
-            const response = await auth.resetPassword(mail);
-            if(response.status === true) {
-                Swal.fire({
-                    title: "Mailinize gelen kodu griniz.",
-                    input: "text",
-                    inputAttributes: {
-                    autocapitalize: "off"
-                    },
-                    showCancelButton: true,
-                    cancelButtonText: "Kapat",
-                    confirmButtonText: "Onayla",
-                    showLoaderOnConfirm: true,
-                    preConfirm: async (code) => {
-                        try {
-                            const response = await auth.confirmationCode(code);
-                            if (response.status === false) {
-                                return Swal.showValidationMessage(await response.message);
-                            }
-                            return response.message;
-                        } catch (error) {
-                            Swal.showValidationMessage(`Hata: ${error}`);
+    const email = mail_input.value.trim();
+
+    if (!email) {
+        return Swal.fire("Hata!", "E-posta adresi boş bırakılamaz.", "error");
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return Swal.fire("Hata!", "Geçerli bir e-posta adresi giriniz.", "error");
+    }
+
+    try {
+        const response = await auth.resetPassword(email);
+        if (response.status === true) {
+            Swal.fire({
+                title: "Mailinize gelen kodu giriniz.",
+                input: "text",
+                inputAttributes: { autocapitalize: "off" },
+                showCancelButton: true,
+                cancelButtonText: "Kapat",
+                confirmButtonText: "Onayla",
+                showLoaderOnConfirm: true,
+                preConfirm: async (code) => {
+                    try {
+                        const confirmResponse = await auth.confirmationCode(code);
+                        if (confirmResponse.status === false) {
+                            return Swal.showValidationMessage(confirmResponse.message);
                         }
-                    },
-                    allowOutsideClick: () => !Swal.isLoading()
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Onay Başarılı!",
-                            text: result.value,
-                            icon: "success"
-                        });
+                        return confirmResponse.message;
+                    } catch (error) {
+                        Swal.showValidationMessage(`Hata: ${error}`);
                     }
-                });
-            }
-        } catch (error) {
-            console.error("Reset Password Hatası: ", error);
-        }   
-    } else {
-        Swal.fire("Mail alanını boş bırakamazsınız");
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Başarılı!", result.value, "success");
+                }
+            });
+        }
+    } catch (error) {
+        Swal.fire("Hata!", "Bir hata oluştu, lütfen tekrar deneyin.", "error");
     }
 };
 
+const handleEnter = (event) => {
+    if (event.key === "Enter") {
+        passwordReset();
+    }
+};
 </script>
 
 <template>
@@ -64,12 +63,10 @@ const passwordReset = async () => {
     <div class="row">
       <div class="col-md-12">
         <div class="login-box">
-          <h4 class="mb-5">Şifrenizi mi Unuttunuz</h4>
-
-            <input type="hidden" name="_token" :value="csrf">
-            <label for="">E-Posta adresinizi giriniz.</label>
-            <input type="email" v-model="mail_input" placeholder="E-Posta" required>
-            <button @click="passwordReset" class="btn btn-new">Kod Gönder</button>
+          <h4 class="mb-5">Şifrenizi mi Unuttunuz?</h4>
+          <label for="email">E-Posta adresinizi giriniz.</label>
+          <input id="email" type="email" v-model="mail_input" placeholder="E-Posta" required autocomplete="email" @keypress="handleEnter" />
+          <button @click="passwordReset" class="btn btn-new">Kod Gönder</button>
         </div>
       </div>
     </div>
