@@ -6,6 +6,9 @@ import Submenu from "./components/submenu.vue";
 
 const authStore = useUserStore();
 
+onMounted(async () => {
+  await authStore.checkSession();
+});
 </script>
 
 <template>

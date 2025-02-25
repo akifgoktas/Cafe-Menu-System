@@ -109,7 +109,7 @@ class UserContreller extends Controller
             ], 201);
         }
     }
-
+    //Editing
     public function resetpassword($mail)
     {
         Session::put([
@@ -123,7 +123,7 @@ class UserContreller extends Controller
 
         return $response;
     }
-
+    //Editing
     public function resetpasswordcontrol($code)
     {
         $confirmation_code = Session::get('confirmation_code');

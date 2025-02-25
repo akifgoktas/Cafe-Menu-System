@@ -6,6 +6,7 @@ import Products from './pages/Products.vue';
 import Login from './pages/Login.vue';
 import Register from './pages/Register.vue';
 import Resetpassword from './pages/ResetPassword.vue';
+import CategoryAdd from "./pages/CategoryAdd.vue";
 
 const routes = [
     { path: '/admin', name: 'Home', component: Home },
@@ -14,6 +15,7 @@ const routes = [
     { path: '/admin/login', name: 'Login', component: Login },
     { path: '/admin/register', name: 'Register', component: Register },
     { path: '/admin/resetpassword', name: 'ResetPassword', component: Resetpassword },
+    { path: '/admin/categoryadd', name: 'CategoryAdd', component: CategoryAdd },
 ];
 
 const router = createRouter({
