@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const useUserStore = defineStore('auth', {
   state: () => ({
-    user_status: null, // State'leri bu şekilde tanımlayın
+    user_status: null,
     user_id: null,
     user_detail: {},
     error: null,
