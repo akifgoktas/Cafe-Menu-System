@@ -7,6 +7,7 @@ import Login from './pages/Login.vue';
 import Register from './pages/Register.vue';
 import Resetpassword from './pages/ResetPassword.vue';
 import CategoryAdd from "./pages/CategoryAdd.vue";
+import UserUpdate from "./pages/UserUpdate.vue";
 
 const routes = [
     { path: '/admin', name: 'Home', component: Home },
@@ -15,6 +16,7 @@ const routes = [
     { path: '/admin/login', name: 'Login', component: Login },
     { path: '/admin/register', name: 'Register', component: Register },
     { path: '/admin/resetpassword', name: 'ResetPassword', component: Resetpassword },
+    { path: '/admin/userupdate', name: 'UserUpdate', component: UserUpdate },
     { path: '/admin/categoryadd', name: 'CategoryAdd', component: CategoryAdd },
 ];
 

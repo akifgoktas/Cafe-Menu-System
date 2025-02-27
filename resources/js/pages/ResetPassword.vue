@@ -62,7 +62,7 @@ const handleEnter = (event) => {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="login-box">
+        <div class="login-box form-group">
           <h4 class="mb-5">Şifrenizi mi Unuttunuz?</h4>
           <label for="email">E-Posta adresinizi giriniz.</label>
           <input id="email" type="email" v-model="mail_input" placeholder="E-Posta" required autocomplete="email" @keypress="handleEnter" />

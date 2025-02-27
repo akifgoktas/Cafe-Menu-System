@@ -57,7 +57,7 @@ const registerForm = async () => {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="login-box">
+        <div class="login-box form-group">
           <h4 class="mb-5">Menü Yönetim Sistemine Üye Olabilirsiniz</h4>
           <form @submit.prevent="registerForm" novalidate>
             <input type="text" v-model="name_input" placeholder="İsminiz ve Soyisminiz" required>

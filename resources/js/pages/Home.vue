@@ -1,6 +1,23 @@
 <script setup>
   import AreaRightTop from "@/components/arearighttop.vue";
   import eye from "@/img/eye.svg";
+  import { onMounted, ref } from 'vue';
+  import { useUserStore } from '../stores/userStore.js';
+  import { storeToRefs } from 'pinia';
+
+  const authStore = useUserStore();
+  const { user_id, user_detail } = storeToRefs(authStore);
+
+  onMounted(async () => {
+    await authStore.userDetail(user_id.value);
+
+    const {full_name, cafe_name, phone_number, email, address, slug} = {...authStore.user_detail};
+
+    console.log(user_id.value);
+    console.log(user_detail.value)
+
+
+  });
 </script>
 
 <template>
@@ -10,7 +27,7 @@
       <div class="col-md-6">
         <div class="title-box">
           <label class="form-label">İsim Soyisim</label>
-          <p class="setting-title">Neslihan İpek</p>        
+          <p class="setting-title">{{ fullName }}</p>        
         </div>
       </div>
       <div class="col-md-6">
@@ -44,7 +61,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-edit">Düzenle</button>
+        <router-link to="/admin/userupdate" class="btn btn-edit">Düzenle</router-link>
       </div>
     </div>
   </div>

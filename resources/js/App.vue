@@ -5,10 +5,6 @@ import Header from './components/header.vue';
 import Submenu from "./components/submenu.vue";
 
 const authStore = useUserStore();
-
-onMounted(async () => {
-  await authStore.checkSession();
-});
 </script>
 
 <template>

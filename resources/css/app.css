@@ -229,7 +229,7 @@ a{
     width: 600px;
     margin: 0 auto;
 }
-.login-box input {
+.form-group input {
     background-color: var(--beigesoft) !important;
     color: var(--coffee2) !important;
     outline: none;
@@ -241,11 +241,11 @@ a{
     border-radius: 4px;
 }
 
-.login-box input::placeholder {
+.form-group input::placeholder {
     color: var(--coffee2);
 }
 
-.login-box input:focus {
+.form-group input:focus {
     background-color: var(--beigesoft) !important;
 }
 .pass-link{

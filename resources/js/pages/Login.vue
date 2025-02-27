@@ -50,7 +50,7 @@ const loginForm = async () => {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="login-box">
+        <div class="login-box form-group">
           <h4 class="mb-5">Menü Yönetim Sistemine Giriş Yapabilirsiniz</h4>
           <form @submit.prevent="loginForm" novalidate>
             <div class="form-group">

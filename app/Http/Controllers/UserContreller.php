@@ -30,6 +30,7 @@ class UserContreller extends Controller
             $response = response()->json([
                 'status'        => true,
                 'user_status'   => true,
+                'user_id'       => Session::get('user_id'),
                 'message'       => 'Kullanıcı oturumu açık'
             ], 201);
         } else {
@@ -54,6 +55,7 @@ class UserContreller extends Controller
                 $response = response()->json([
                     'status'    => true,
                     'user_status'   => true,
+                    'user_id'       => $user_login->id,
                     'message'   => 'Giriş yapıldı: ',
                 ], 201);
             } else {
@@ -66,6 +68,33 @@ class UserContreller extends Controller
             $response = response()->json([
                 'status'    => false,
                 'message'   => 'Giriş yaparken bir hata meydana geldi: ' . $th->getMessage()
+            ], 201);
+        }
+        return $response;
+    }
+
+    public function userdetail(Request $request, $user_id)
+    {
+        try {
+            $user_detail = UsersModel::where('id', $user_id)
+                ->select('full_name', 'cafe_name', 'phone_number', 'email', 'address', 'slug', 'id')
+                ->first();
+            if (Session::get('user_id') === $user_detail->id) {
+                $response = response()->json([
+                    'status'        => true,
+                    'user_detail'   => $user_detail,
+                    'message'       => 'Profil bilgileri çekildi',
+                ], 201);
+            } else {
+                $response = response()->json([
+                    'status'    => false,
+                    'message'   => 'Yetkiniz yok...'
+                ], 201);
+            }
+        } catch (\Throwable $th) {
+            $response = response()->json([
+                'status'    => false,
+                'message'   => 'Hata: ' . $th->getMessage()
             ], 201);
         }
         return $response;
@@ -138,7 +167,7 @@ class UserContreller extends Controller
     public function logout()
     {
         try {
-            Session::forget('user_status');
+            Session::forget('user_status', 'user_id');
 
             if (!Session::has('user_status')) {
                 $response = response()->json([
