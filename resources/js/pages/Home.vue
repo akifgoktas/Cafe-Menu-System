@@ -8,15 +8,28 @@
   const authStore = useUserStore();
   const { user_id, user_detail } = storeToRefs(authStore);
 
+  const fullName = ref('');
+  const cafeName = ref('');
+  const phoneNumber = ref();
+  const eMail = ref();
+  const Address = ref();
+  const Slug = ref();
+
   onMounted(async () => {
     await authStore.userDetail(user_id.value);
 
-    const {full_name, cafe_name, phone_number, email, address, slug} = {...authStore.user_detail};
+    const {full_name, cafe_name, phone_number, email, address, slug} = {...user_detail.value};
+
+    fullName.value = full_name;
+    cafeName.value = cafe_name;
+    phoneNumber.value = phone_number;
+    eMail.value = email;
+    Address.value = address;
+    Slug.value = slug;
 
     console.log(user_id.value);
-    console.log(user_detail.value)
-
-
+    console.log({...user_detail.value})
+    console.log(full_name)
   });
 </script>
 
@@ -33,13 +46,13 @@
       <div class="col-md-6">
         <div class="title-box">
           <label class="form-label">Telfon Numarası</label>
-          <p class="setting-title">+90 555 555 55 55</p>
+          <p class="setting-title">{{phoneNumber}}</p>
         </div>
       </div>
       <div class="col-md-6">
         <div class="title-box">
           <label class="form-label">E-Posta</label>
-          <p class="setting-title">neslihan.ipek@mail.com</p>
+          <p class="setting-title">{{eMail}}</p>
         </div>
       </div>
       <div class="col-md-6">
@@ -51,13 +64,13 @@
       <div class="col-md-6">
         <div class="title-box">
           <label class="form-label">Kafe İsmi</label>
-          <p class="setting-title">Cafe Neslihan</p>
+          <p class="setting-title">{{cafeName}}</p>
         </div>
       </div>
       <div class="col-md-6">
         <div class="title-box">
           <label class="form-label">Adresiniz</label>
-          <p class="setting-title">... mah. ... cd. ... sk. ilçe/il</p>
+          <p class="setting-title">{{Address}}</p>
         </div>
       </div>
       <div class="col-md-12">
