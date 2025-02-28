@@ -104,9 +104,8 @@ yarn dev
 
 ## **Images**
 
-### 1. **Login Screen**
-
-![Homepage](/resources/js/img/projectview/login.png)
+| ![Login](/resources/js/img/projectview/login.png) | ![Profile](/resources/js/img/projectview/profile.png) | ![Profile Update](/resources/js/img/projectview/profileupdate.png) |
+| ------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
 
 ---
 
