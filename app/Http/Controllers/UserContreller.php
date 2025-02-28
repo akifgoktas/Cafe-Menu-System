@@ -188,4 +188,9 @@ class UserContreller extends Controller
         }
         return $response;
     }
+
+    public function update(Request $request, $user_id)
+    {
+        return true;
+    }
 }

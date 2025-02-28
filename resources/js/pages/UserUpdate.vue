@@ -30,7 +30,8 @@ const authStore = useUserStore();
   });
 
 const updateForm = async () => {
-  const response = await auth.update(password, phone_number, cafe_name, full_name, address);
+  const response = await authStore.update(Password.value, phoneNumber.value, cafeName.value, fullName.value, Address.value);
+
   if (response.status === false) {
     Swal.fire({
       icon: "error",
@@ -46,7 +47,7 @@ const updateForm = async () => {
       showConfirmButton: false,
       timer: 1500
     });
-    router.push({ name: 'Login' });
+    await authStore.userDetail(user_id.value);
   }
 };
 </script>

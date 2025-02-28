@@ -8,6 +8,8 @@
   const authStore = useUserStore();
   const { user_id, user_detail } = storeToRefs(authStore);
 
+  console.log({...user_detail.value})
+
   const fullName = ref('');
   const cafeName = ref('');
   const phoneNumber = ref();
