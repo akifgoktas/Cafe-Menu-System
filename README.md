@@ -109,18 +109,6 @@ yarn dev
 
 ---
 
-## **Contributing**
-
-If you would like to contribute to this project, please follow the steps below:
-
-1. Fork this repository.
-2. Create a new branch (`git checkout -b feature/feature-name`).
-3. Make your changes and commit them (`git commit -am 'New feature added'`).
-4. Push the branch (`git push origin feature/feature-name`).
-5. Submit a Pull Request.
-
----
-
 ## **Contact**
 
 For more information about the project or to ask questions, feel free to reach out to me.
