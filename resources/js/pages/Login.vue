@@ -25,6 +25,7 @@ const loginForm = async () => {
   }
   
   const response = await auth.login(email, password);
+  
   if (response.status === false) {
     Swal.fire({
       icon: "error",
@@ -55,11 +56,11 @@ const loginForm = async () => {
           <form @submit.prevent="loginForm" novalidate>
             <div class="form-group">
               <label for="email">E-Posta adresinizi giriniz.</label>
-              <input id="email" type="email" v-model="mail_input" placeholder="E-Posta" required class="form-control">
+              <input id="email" type="email" v-model="mail_input" placeholder="E-Posta" required class="form-control" autocomplete="email">
             </div>
             <div class="form-group">
               <label for="password">Şifrenizi giriniz.</label>
-              <input id="password" type="password" v-model="password_input" placeholder="Şifre" required class="form-control">
+              <input id="password" type="password" v-model="password_input" placeholder="Şifre" required class="form-control" autocomplete="current-password">
             </div>
             <button type="submit" class="btn btn-new">Giriş Yap</button>
           </form>

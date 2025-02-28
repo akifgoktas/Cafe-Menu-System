@@ -186,6 +186,6 @@ class UserContreller extends Controller
                 'message'   => 'Hata meydana geldi: ' . $th->getMessage()
             ], 500);
         }
-        return redirect(route('admin'));
+        return $response;
     }
 }

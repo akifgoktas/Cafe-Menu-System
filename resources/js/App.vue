@@ -1,10 +1,11 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useUserStore } from './stores/userStore.js';
 import Header from './components/header.vue';
 import Submenu from "./components/submenu.vue";
 
 const authStore = useUserStore();
+
 </script>
 
 <template>

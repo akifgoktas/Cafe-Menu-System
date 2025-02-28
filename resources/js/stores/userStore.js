@@ -15,6 +15,7 @@ export const useUserStore = defineStore('auth', {
         const response = await axios.post('/api/users/login', { email, password });
         this.user_status = response.data.user_status;
         this.user_id = response.data.user_id;
+        localStorage.setItem('user_id', JSON.stringify(this.user_id));
         return response.data;
       } catch (err) {
         this.error = err.response?.data?.message || 'Giriş başarısız';
@@ -61,6 +62,7 @@ export const useUserStore = defineStore('auth', {
         this.user_status = null;
         this.user_id = null;
         this.user_detail = {};
+        return localStorage.removeItem('user_id');
       } catch (err) {
         this.error = err.response?.data?.message || 'Çıkış başarısız';
         throw err;

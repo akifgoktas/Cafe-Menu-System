@@ -60,12 +60,12 @@ const registerForm = async () => {
         <div class="login-box form-group">
           <h4 class="mb-5">Menü Yönetim Sistemine Üye Olabilirsiniz</h4>
           <form @submit.prevent="registerForm" novalidate>
-            <input type="text" v-model="name_input" placeholder="İsminiz ve Soyisminiz" required>
-            <input type="text" v-model="cafe_name_input" placeholder="Kafe İsminiz" required>
-            <input type="text" v-model="phone_input" placeholder="Telefon Numaranız" required>
-            <input type="email" v-model="mail_input" placeholder="E-Posta" required>
-            <input type="password" v-model="password_input" placeholder="Şifre" required>
-            <input type="text" v-model="address_input" placeholder="Adres" required>
+            <input type="text" v-model="name_input" placeholder="İsminiz ve Soyisminiz">
+            <input type="text" v-model="cafe_name_input" placeholder="Kafe İsminiz">
+            <input type="text" v-model="phone_input" placeholder="Telefon Numaranız">
+            <input type="email" v-model="mail_input" placeholder="E-Posta"  autocomplete="email">
+            <input type="password" v-model="password_input" placeholder="Şifre" autocomplete="current-password">
+            <input type="text" v-model="address_input" placeholder="Adres">
             <button type="submit" class="btn btn-new">Üye Ol</button>
           </form>
           <router-link to="/admin/login" class="pass-link">Zaten üye misiniz</router-link>

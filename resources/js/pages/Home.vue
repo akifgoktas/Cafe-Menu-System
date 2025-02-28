@@ -27,9 +27,9 @@
     Address.value = address;
     Slug.value = slug;
 
-    console.log(user_id.value);
-    console.log({...user_detail.value})
-    console.log(full_name)
+    // console.log(user_id.value);
+    // console.log({...user_detail.value})
+    // console.log(full_name)
   });
 </script>
 

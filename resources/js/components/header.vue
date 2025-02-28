@@ -8,6 +8,12 @@ const authStore = useUserStore();
 const router = useRouter();
 
 const user_status = computed(() => authStore.user_status);
+
+const logout = async () => {
+  await authStore.logout();
+  await router.push('/admin/login');
+};
+
 </script>
 
 <template>
@@ -18,10 +24,10 @@ const user_status = computed(() => authStore.user_status);
       </a>
       <ul class="nav header-menu">
         <li class="nav-item" v-if="user_status">
-          <a href="/api/users/logout" class="btn btn-logout">Çıkış</a>
+          <button @click="logout" class="btn btn-logout">Çıkış</button>
         </li>
         <li class="nav-item" v-if="$route.name !== 'Register' && !user_status">
-          <a href="/admin/register" class="btn btn-logout">Kayıt Ol</a>
+          <router-link to="/admin/register" class="btn btn-logout">Kayıt Ol</router-link>
         </li>
       </ul>
     </div>
