@@ -1,6 +1,7 @@
 # Cafe Menu System
 
 A web application where cafes and restaurants can create their menus, and customers can quickly view these menus.
+In progress...
 
 ---
 
