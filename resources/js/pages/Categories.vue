@@ -61,6 +61,166 @@ const showAlert = () => {
           <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
         </td>
       </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Soğuk İçecekler</td>
+        <td class="button-group">
+          <button type="button" class="btn btn-edit">Düzenle</button>
+          <button @click="showAlert" type="button" class="btn btn-delete">Sil</button>
+        </td>
+      </tr>
     </tbody>
   </table>
   </template>

@@ -31,7 +31,7 @@ const authStore = useUserStore();
 
 const updateForm = async () => {
   const response = await authStore.update(Password.value, phoneNumber.value, cafeName.value, fullName.value, Address.value);
-
+console.log(response.status);
   if (response.status === false) {
     Swal.fire({
       icon: "error",
@@ -47,7 +47,6 @@ const updateForm = async () => {
       showConfirmButton: false,
       timer: 1500
     });
-    await authStore.userDetail(user_id.value);
   }
 };
 </script>
@@ -56,7 +55,7 @@ const updateForm = async () => {
   <AreaRightTop />
   <div class="container-fluid setting-home">
     <div class="form-group">
-      <form @submit.prevent="updateForm" novalidate>
+      <form @submit.prevent="updateForm">
         <div class="row">  
           <div class="col-md-6">
             <div class="title-box">

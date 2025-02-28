@@ -30,7 +30,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const authStore = useUserStore();
   if (authStore.user_status === null) {
-    await authStore.checkSession();
+    await authStore.userControl();
   }
 
   if (!authStore.user_status) {

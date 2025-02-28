@@ -40,6 +40,7 @@ export const useUserStore = defineStore('user', () => {
       const { data } = await axios.post(`/api/users/userdetail/${user_id}`);
       localStorage.setItem('user_detail', JSON.stringify(user_detail.value));
       user_detail.value = data.user_detail;
+      return data;
     } catch (err) {
       error.value = err.response?.data?.message || 'Kullanıcı detayı alınamadı';
       throw err;
@@ -58,7 +59,7 @@ export const useUserStore = defineStore('user', () => {
     }
   };
 
-  const checkSession = async () => {
+  const userControl = async () => {
     try {
       const { data } = await axios.get('/api/users/usercontrol');
       user_status.value = data.user_status;
@@ -115,7 +116,7 @@ export const useUserStore = defineStore('user', () => {
     register,
     userDetail,
     update,
-    checkSession,
+    userControl,
     logout,
     resetPassword,
     confirmationCode

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UsersRegisterRequest;
 use App\Http\Requests\UsersLoginRequest;
 use App\Models\UsersModel;
+use App\Http\Requests\UsersUpdateRequest;
 
 class UserContreller extends Controller
 {
@@ -171,26 +172,57 @@ class UserContreller extends Controller
 
             if (!Session::has('user_status')) {
                 $response = response()->json([
-                    'status'    => 'success',
+                    'status'    => true,
                     'message'   => 'Oturum kapatıldı'
                 ], 201);
             } else {
                 $response = response()->json([
-                    'status'    => 'error',
+                    'status'    => false,
                     'message'   => 'Oturum kapatılmadı'
-                ], 500);
+                ], 201);
             }
         } catch (\Throwable $th) {
             $response = response()->json([
-                'status'    => 'error',
+                'status'    => false,
                 'message'   => 'Hata meydana geldi: ' . $th->getMessage()
-            ], 500);
+            ], 201);
         }
         return $response;
     }
 
-    public function update(Request $request, $user_id)
+    public function update(UsersUpdateRequest $request, $user_id)
     {
-        return true;
+        try {
+            $user = UsersModel::find($user_id);
+            if (!$user) {
+                $response = response()->json([
+                    'status'  => false,
+                    'message' => 'Kullanıcı bulunamadı.'
+                ], 404);
+                return $response;
+            }
+            $updatedData = collect($request->all())->filter(function ($value, $key) use ($user) {
+                return !is_null($value) && $value !== '' && $user->$key !== $value;
+            });
+            if ($updatedData->isEmpty()) {
+                $response = response()->json([
+                    'status'  => false,
+                    'message' => 'Güncellenecek yeni veri bulunamadı.'
+                ], 200);
+                return $response;
+            }
+            $user->update($updatedData->toArray());
+            $response = response()->json([
+                'status'  => true,
+                'message' => 'Kullanıcı bilgileri başarıyla güncellendi.',
+                'updated_fields' => $updatedData->keys()
+            ], 200);
+        } catch (\Exception $e) {
+            $response = response()->json([
+                'status'  => false,
+                'message' => 'Beklenmeyen bir hata oluştu: ' . $e->getMessage()
+            ], 500);
+        }
+        return $response;
     }
 }

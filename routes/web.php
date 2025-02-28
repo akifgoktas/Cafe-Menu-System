@@ -15,20 +15,14 @@ Route::get('/', function () {
 
 
 Route::get('/api/users/usercontrol', [UserContreller::class, 'usercontrol']);
-
-Route::post('/api/users/login', [UserContreller::class, 'login'])->middleware('UsersMiddleware');
-Route::post('/api/users/register', [UserContreller::class, 'register'])->middleware('UsersMiddleware');
 Route::post('/api/users/userdetail/{user_id}', [UserContreller::class, 'userdetail'])->middleware('UsersMiddleware');
 Route::put('/api/users/update/{user_id}', [UserContreller::class, 'update'])->middleware('UsersMiddleware');
+
+
+
+
+Route::post('/api/users/login', [UserContreller::class, 'login']);
+Route::post('/api/users/register', [UserContreller::class, 'register']);
 Route::post('/api/users/logout', [UserContreller::class, 'logout']);
-Route::post('/api/users/resetpassword/{mail}', [UserContreller::class, 'resetpassword'])->middleware('UsersMiddleware');
-Route::post('/api/users/resetpasswordcontrol/{code}', [UserContreller::class, 'resetpasswordcontrol'])->middleware('UsersMiddleware');
-
-
-
-Route::get('/csrf-token', function () {
-    $response = response()->json([
-        'csrf_token' => csrf_token(),
-    ], 201);
-    return $response;
-});
+Route::post('/api/users/resetpassword/{mail}', [UserContreller::class, 'resetpassword']);
+Route::post('/api/users/resetpasswordcontrol/{code}', [UserContreller::class, 'resetpasswordcontrol']);
