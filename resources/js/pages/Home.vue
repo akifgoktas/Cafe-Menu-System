@@ -27,6 +27,8 @@
     Address.value = address;
     Slug.value = slug;
 
+
+
     // console.log(user_id.value);
     // console.log({...user_detail.value})
     // console.log(full_name)
@@ -74,7 +76,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <router-link to="/admin/userupdate" class="btn btn-edit">Düzenle</router-link>
+        <router-link :to="{ name: 'UserUpdate'}" class="btn btn-edit">Düzenle</router-link>
       </div>
     </div>
   </div>

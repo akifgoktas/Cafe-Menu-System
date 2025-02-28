@@ -77,7 +77,7 @@ class UserContreller extends Controller
     {
         try {
             $user_detail = UsersModel::where('id', $user_id)
-                ->select('full_name', 'cafe_name', 'phone_number', 'email', 'address', 'slug', 'id')
+                ->select('full_name', 'cafe_name', 'phone_number', 'email', 'address', 'slug', 'id', 'password')
                 ->first();
             if (Session::get('user_id') === $user_detail->id) {
                 $response = response()->json([

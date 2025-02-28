@@ -59,16 +59,16 @@ const registerForm = async () => {
       <div class="col-md-12">
         <div class="login-box form-group">
           <h4 class="mb-5">Menü Yönetim Sistemine Üye Olabilirsiniz</h4>
-          <form @submit.prevent="registerForm" novalidate>
-            <input type="text" v-model="name_input" placeholder="İsminiz ve Soyisminiz">
-            <input type="text" v-model="cafe_name_input" placeholder="Kafe İsminiz">
-            <input type="text" v-model="phone_input" placeholder="Telefon Numaranız">
-            <input type="email" v-model="mail_input" placeholder="E-Posta"  autocomplete="email">
-            <input type="password" v-model="password_input" placeholder="Şifre" autocomplete="current-password">
-            <input type="text" v-model="address_input" placeholder="Adres">
+          <form @submit.prevent="registerForm">
+            <input type="text" v-model="name_input" placeholder="İsminiz ve Soyisminiz" required>
+            <input type="text" v-model="cafe_name_input" placeholder="Kafe İsminiz" required>
+            <input type="text" v-model="phone_input" placeholder="Telefon Numaranız" required>
+            <input type="email" v-model="mail_input" placeholder="E-Posta" autocomplete="email" required>
+            <input type="password" v-model="password_input" placeholder="Şifre" autocomplete="current-password" required>
+            <input type="text" v-model="address_input" placeholder="Adres" required>
             <button type="submit" class="btn btn-new">Üye Ol</button>
           </form>
-          <router-link to="/admin/login" class="pass-link">Zaten üye misiniz</router-link>
+          <router-link :to="{ name: 'Login' }" class="pass-link">Zaten üye misiniz</router-link>
         </div>
       </div>
     </div>

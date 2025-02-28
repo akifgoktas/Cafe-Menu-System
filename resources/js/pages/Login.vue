@@ -53,18 +53,18 @@ const loginForm = async () => {
       <div class="col-md-12">
         <div class="login-box form-group">
           <h4 class="mb-5">Menü Yönetim Sistemine Giriş Yapabilirsiniz</h4>
-          <form @submit.prevent="loginForm" novalidate>
+          <form @submit.prevent="loginForm">
             <div class="form-group">
               <label for="email">E-Posta adresinizi giriniz.</label>
-              <input id="email" type="email" v-model="mail_input" placeholder="E-Posta" required class="form-control" autocomplete="email">
+              <input id="email" type="email" v-model="mail_input" placeholder="E-Posta" class="form-control" autocomplete="email" required>
             </div>
             <div class="form-group">
               <label for="password">Şifrenizi giriniz.</label>
-              <input id="password" type="password" v-model="password_input" placeholder="Şifre" required class="form-control" autocomplete="current-password">
+              <input id="password" type="password" v-model="password_input" placeholder="Şifre" class="form-control" autocomplete="current-password" required>
             </div>
             <button type="submit" class="btn btn-new">Giriş Yap</button>
           </form>
-          <router-link to="/admin/resetpassword" class="pass-link">Şifremi Unuttum</router-link>
+          <router-link :to="{ name: 'ResetPassword' }" class="pass-link">Şifremi Unuttum</router-link>
         </div>
       </div>
     </div>
