@@ -105,7 +105,7 @@ yarn dev
 
 ### 1. **Login Screen**
 
-![Homepage](./public/assets/img/login.png)
+![Homepage](/public/assets/img/login.png)
 
 ---
 
