@@ -68,7 +68,7 @@ const registerForm = async () => {
             <input type="text" v-model="address_input" placeholder="Adres" required>
             <button type="submit" class="btn btn-new">Üye Ol</button>
           </form>
-          <router-link :to="{ name: 'Login' }" class="pass-link">Zaten üye misiniz</router-link>
+          <RouterLink :to="{ name: 'Login' }" class="pass-link">Zaten üye misiniz</RouterLink>
         </div>
       </div>
     </div>

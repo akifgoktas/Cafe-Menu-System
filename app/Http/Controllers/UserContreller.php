@@ -193,30 +193,42 @@ class UserContreller extends Controller
     public function update(UsersUpdateRequest $request, $user_id)
     {
         try {
+            $message = "";
             $user = UsersModel::find($user_id);
             if (!$user) {
                 $response = response()->json([
                     'status'  => false,
                     'message' => 'Kullanıcı bulunamadı.'
                 ], 404);
-                return $response;
+            } else {
+                $updatedData = collect($request->all())->filter(function ($value, $key) use ($user) {
+                    return !is_null($value) && $value !== '' && $user->$key !== $value;
+                });
+                if ($updatedData->isEmpty()) {
+                    $response = response()->json([
+                        'status'  => false,
+                        'message' => 'Güncellenecek yeni veri bulunamadı.'
+                    ], 200);
+                } else {
+                    if ($updatedData->has('cafe_name')) {
+                        $cafeName = $updatedData->get('cafe_name');
+                        $cafeExists = UsersModel::where('cafe_name', $cafeName)->exists();
+                        if ($cafeExists) {
+                            $updatedData->forget('cafe_name');
+                            $message = "Bilgileriniz değiştirildi fakat bu kafe ismi başkası tarafından kullanıldığı için kafe isminiz değiştirilemedi.";
+                        } else {
+                            $updatedData->put('slug', Str::slug($cafeName));
+                        }
+                    }
+                    $user->update($updatedData->toArray());
+                    $response = response()->json([
+                        'status'  => true,
+                        'message' => 'Kullanıcı bilgileri başarıyla güncellendi.' . $message,
+                        'updated_fields' => $updatedData->keys(),
+                        'user_detail' => $user
+                    ], 200);
+                }
             }
-            $updatedData = collect($request->all())->filter(function ($value, $key) use ($user) {
-                return !is_null($value) && $value !== '' && $user->$key !== $value;
-            });
-            if ($updatedData->isEmpty()) {
-                $response = response()->json([
-                    'status'  => false,
-                    'message' => 'Güncellenecek yeni veri bulunamadı.'
-                ], 200);
-                return $response;
-            }
-            $user->update($updatedData->toArray());
-            $response = response()->json([
-                'status'  => true,
-                'message' => 'Kullanıcı bilgileri başarıyla güncellendi.',
-                'updated_fields' => $updatedData->keys()
-            ], 200);
         } catch (\Exception $e) {
             $response = response()->json([
                 'status'  => false,

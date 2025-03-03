@@ -64,7 +64,7 @@ const loginForm = async () => {
             </div>
             <button type="submit" class="btn btn-new">Giriş Yap</button>
           </form>
-          <router-link :to="{ name: 'ResetPassword' }" class="pass-link">Şifremi Unuttum</router-link>
+          <RouterLink :to="{ name: 'ResetPassword' }" class="pass-link">Şifremi Unuttum</RouterLink>
         </div>
       </div>
     </div>

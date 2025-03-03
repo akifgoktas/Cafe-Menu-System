@@ -27,7 +27,7 @@ const logout = async () => {
           <button @click="logout" class="btn btn-logout">Çıkış</button>
         </li>
         <li class="nav-item" v-if="$route.name !== 'Register' && !user_status">
-          <router-link :to="{ name: 'Register' }" class="btn btn-logout">Kayıt Ol</router-link>
+          <RouterLink :to="{ name: 'Register' }" class="btn btn-logout">Kayıt Ol</RouterLink>
         </li>
       </ul>
     </div>

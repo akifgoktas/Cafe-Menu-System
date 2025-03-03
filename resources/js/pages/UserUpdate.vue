@@ -7,46 +7,53 @@ import AreaRightTop from "@/components/arearighttop.vue";
 import { storeToRefs } from 'pinia';
 
 const authStore = useUserStore();
-  const { user_id, user_detail } = storeToRefs(authStore);
+const { user_id, user_detail } = storeToRefs(authStore);
 
-  const fullName = ref('');
-  const cafeName = ref('');
-  const phoneNumber = ref();
-  const Password = ref();
-  const Address = ref();
-  const Slug = ref();
+const fullName = ref('');
+const cafeName = ref('');
+const phoneNumber = ref();
+const Password = ref('');
+const Address = ref('');
+const Slug = ref('');
 
-  onMounted(async () => {
-    await authStore.userDetail(user_id.value);
+const userDetailGet = async () => {
+  await authStore.userDetail(user_id.value);
 
-    const {full_name, cafe_name, phone_number, password, address, slug} = {...user_detail.value};
+  const {full_name, cafe_name, phone_number, password, address, slug} = {...user_detail.value};
 
-    fullName.value = full_name;
-    cafeName.value = cafe_name;
-    phoneNumber.value = phone_number;
-    Password.value = password;
-    Address.value = address;
-    Slug.value = slug;
-  });
+  fullName.value = full_name;
+  cafeName.value = cafe_name;
+  phoneNumber.value = phone_number;
+  Password.value = password;
+  Address.value = address;
+  Slug.value = slug;
+}
+
+onMounted(async () => {
+  userDetailGet();
+});
 
 const updateForm = async () => {
   const response = await authStore.update(Password.value, phoneNumber.value, cafeName.value, fullName.value, Address.value);
-console.log(response.status);
+  console.log(response.status);
   if (response.status === false) {
     Swal.fire({
       icon: "error",
-      title: "Tüm alanlar doğru şekilde doldurulmalıdır",
+      title: "Uyarı",
       text: response.message,
       confirmButtonText: "Tamam",
+      timer: 1500
     });
   } else {
     await Swal.fire({
-      title: "Bilgileriniz başarılı bir şekilde güncellenmiştir",
+      title: "Başarılı",
       icon: "success",
       draggable: true,
       showConfirmButton: false,
-      timer: 1500
+      text: response.message,
+      timer: 5000
     });
+    await userDetailGet();
   }
 };
 </script>

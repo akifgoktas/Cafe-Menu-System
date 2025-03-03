@@ -78,7 +78,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <router-link :to="{ name: 'UserUpdate'}" class="btn btn-edit">Düzenle</router-link>
+        <RouterLink :to="{ name: 'UserUpdate'}" class="btn btn-edit">Düzenle</RouterLink>
       </div>
     </div>
   </div>

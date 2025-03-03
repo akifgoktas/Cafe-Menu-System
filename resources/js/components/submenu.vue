@@ -12,9 +12,9 @@ const submenuRoutes = allRoutes.filter(route => route.meta?.submenu);
   <div class="submenu">
     <ul>
       <li v-for="route in submenuRoutes" :key="route.name">
-        <router-link :to="route.path" :class="{ active: $route.path === route.path }">
+        <RouterLink :to="route.path" :class="{ active: $route.path === route.path }">
           {{ route.meta.title }}
-        </router-link>
+        </RouterLink>
       </li>
     </ul>
   </div>
